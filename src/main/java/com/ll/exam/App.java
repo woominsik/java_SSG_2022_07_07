@@ -8,7 +8,8 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
-        outer:
+        int wiseSayingLastId=0;
+        boolean outerCheck=false;
         while (true) {
             System.out.printf("명령) ");
             String cmd = sc.nextLine().trim();
@@ -19,10 +20,18 @@ public class App {
                     String content = sc.nextLine().trim();
                     System.out.printf("작가 : ");
                     String author = sc.nextLine().trim();
-                    System.out.println("1번 명언이 등록되었습니다.");
+                    int id = ++wiseSayingLastId;
+
+                    WiseSaying wiseSaying = new WiseSaying(id,content,author);
+                    System.out.println(wiseSaying);
+                    System.out.println(id+"번 명언이 등록되었습니다.");
                     break;
                 case "종료":
-                    break outer;
+                    outerCheck = true;
+                    break;
+            }
+            if(outerCheck){
+                break ;
             }
         }
 
