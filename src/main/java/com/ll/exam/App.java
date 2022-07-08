@@ -1,11 +1,12 @@
 package com.ll.exam;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
     public void run() {
         System.out.println("== 명언 SSG ==");
-
+        ArrayList<WiseSaying> sayings = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
 
         int wiseSayingLastId=0;
@@ -24,11 +25,18 @@ public class App {
 
                     WiseSaying wiseSaying = new WiseSaying(id,content,author);
                     System.out.println(wiseSaying);
+                    sayings.add(wiseSaying);
                     System.out.println(id+"번 명언이 등록되었습니다.");
                     break;
+
                 case "종료":
                     outerCheck = true;
                     break;
+
+                case "목록" :
+                    for(WiseSaying says : sayings){
+                        System.out.println(says);
+                    }
             }
             if(outerCheck){
                 break ;
