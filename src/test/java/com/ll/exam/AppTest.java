@@ -2,8 +2,7 @@ package com.ll.exam;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,5 +32,22 @@ class AppTest {
         assertEquals(cmd,"등록");
         assertEquals(content,"명언1");
         assertEquals(author,"작가1");
+    }
+
+    @Test
+    public void 표준출력을_리다이렉션하여_결과를_문자열로_받기() throws IOException {
+        // 표준출력을 리다이렉션 함
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        System.out.println("안녕");
+
+        String rs = output.toString().trim();
+
+        //표준 출력 원상복구
+        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+        output.close();
+
+        assertEquals(rs,"안녕");
     }
 }
