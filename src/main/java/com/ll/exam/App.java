@@ -19,7 +19,9 @@ public class App {
             System.out.printf("명령) ");
             String cmd = sc.nextLine().trim();
 
-            switch (cmd) {
+            Rq rq = new Rq(cmd);
+
+            switch (rq.getPath()) {
                 case "등록":
                     System.out.printf("명언 : ");
                     String content = sc.nextLine().trim();
@@ -33,6 +35,31 @@ public class App {
                     System.out.println(id+"번 명언이 등록되었습니다.");
                     break;
 
+                case "삭제" :
+                    int paramId = rq.getIntParam("id",0);
+
+                    if(paramId==0){
+                        System.out.println("id를 입력해주세요");
+                        continue;
+                    }
+
+                    WiseSaying wiseSaying__ = null;
+
+                    for (WiseSaying wiseSaying___ : wiseSayings) {
+                        if(wiseSaying___.id == paramId){
+                            wiseSaying__ = wiseSaying___;
+                        }
+                    }
+
+                    if(wiseSaying__ == null){
+                        System.out.println(paramId+"번 명언은 존재하지 않습니다..");
+                        continue;
+                    }
+
+                    wiseSayings.remove(wiseSaying__);
+
+                    System.out.println(paramId+"번 명언이 삭제되었습니다.");
+                    break;
                 case "종료":
                     outerCheck = true;
                     break;
