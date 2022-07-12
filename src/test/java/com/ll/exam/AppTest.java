@@ -9,6 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
     @Test
+    void 파일에_내용쓰기() {
+        Util.mkdir("test_data");
+        Util.saveToFile("test_data/1.json", "내용");
+    }
+
+    @Test
     public void 테스트_실험(){
         int rs = 10+20;
         assertEquals(30, rs);
